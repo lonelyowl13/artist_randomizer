@@ -49,10 +49,8 @@ class RandomArtists:
                 final_tags.append(artist_escaped)
 
         final_prompt = prompt.strip()
-        if final_prompt and not final_prompt.endswith(","):
-            final_prompt += ","
 
-        composed = f"{final_prompt} \n" + ", ".join(final_tags)
+        composed = ", ".join(final_tags) + "\n\n" + final_prompt
         return (composed.strip(),)
 
 
