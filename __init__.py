@@ -12,7 +12,8 @@ class RandomArtists:
                 "num_artists": ("INT", {"default": 2, "min": 1, "max": 10}),
                 "min_post_count": ("INT", {"default": 0, "min": 0}),
                 "weight_noise": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0}),
-                "seed": ("INT", {"default": 0, "min": -9999999999999, "max": 9999999999999})
+                "seed": ("INT", {"default": 0, "min": -9999999999999, "max": 9999999999999}),
+                "lumina_style": ("BOOLEAN", {"default": False})
             },
             "optional": {}
         }
@@ -28,7 +29,7 @@ class RandomArtists:
         with open(json_path, "r", encoding="utf-8") as f:
             self.artists = json.load(f)
 
-    def compose_prompt(self, prompt, num_artists, min_post_count, weight_noise, seed):
+    def compose_prompt(self, prompt, num_artists, min_post_count, weight_noise, seed, lumina_style):
         eligible = [a["name"] for a in self.artists if a["post_count"] >= min_post_count]
 
         random.seed(seed)
@@ -42,6 +43,9 @@ class RandomArtists:
         for artist in selected:
 
             artist_escaped = artist.replace(")", "\\)").replace("(", "\\(")
+            if lumina_style:
+                artist_escaped = "@" + artist_escaped
+
             if weight_noise > 0.0 and random.random() < 0.5:
                 weight = round(random.uniform(1.0 - weight_noise, 1.0 + weight_noise), 2)
                 final_tags.append(f"({artist_escaped}:{weight})")
@@ -50,7 +54,10 @@ class RandomArtists:
 
         final_prompt = prompt.strip()
 
-        composed = ", ".join(final_tags) + "\n\n" + final_prompt
+        if "__random_artists__" in final_prompt:
+            final_prompt.replace("__random_artists__", ", ".join(final_tags))
+
+        composed = final_prompt
         return (composed.strip(),)
 
 
