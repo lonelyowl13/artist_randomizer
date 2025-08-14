@@ -55,7 +55,7 @@ class RandomArtists:
         final_prompt = prompt.strip()
 
         if "__random_artists__" in final_prompt:
-            final_prompt.replace("__random_artists__", ", ".join(final_tags))
+            final_prompt = final_prompt.replace("__random_artists__", ", ".join(final_tags))
 
         composed = final_prompt
         return (composed.strip(),)
