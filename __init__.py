@@ -57,6 +57,10 @@ class RandomArtists:
         if "__random_artists__" in final_prompt:
             final_prompt = final_prompt.replace("__random_artists__", ", ".join(final_tags))
 
+        else:
+            # just add it to the end of a prompt then
+            final_prompt += ", ".join(final_tags)
+
         composed = final_prompt
         return (composed.strip(),)
 

@@ -31,14 +31,17 @@ A few parameters are available:
 
 #### 🔧 Parameters
 
-| Name             | Type     | Description                                                                   |
-| ---------------- | -------- | ----------------------------------------------------------------------------- |
-| `prompt`         | `STRING` | Your base prompt text to prepend to the generated artist tags                 |
-| `num_artists`    | `INT`    | Number of artists to include in the prompt                                    |
-| `min_post_count` | `INT`    | Only include artists with at least this many posts                            |
-| `weight_noise`   | `FLOAT`  | If > 0, randomly applies weights to some artist tags in the range `1 ± noise` |
-| `seed`           | `INT`    | Seed value for reproducible randomization                                     |
+| Name             | Type      | Description                                                                   |
+|------------------|-----------|-------------------------------------------------------------------------------|
+| `prompt`         | `STRING`  | Your base prompt text to add generated artist tags                            |
+| `num_artists`    | `INT`     | Number of artists to include in the prompt                                    |
+| `min_post_count` | `INT`     | Only include artists with at least this many posts                            |
+| `weight_noise`   | `FLOAT`   | If > 0, randomly applies weights to some artist tags in the range `1 ± noise` |
+| `seed`           | `INT`     | Seed value for reproducible randomization                                     |
+| `lumina_style`   | `BOOLEAN` | Add lumina-esque tags, e.g. @username1, @username2                            |
 
+Use the `__random_artists__` placeholder in the original prompt,
+it will be replaced by the generated tags. If the placeholder is not found, the tags will be appended to the prompt.
 
 #### Output
 
