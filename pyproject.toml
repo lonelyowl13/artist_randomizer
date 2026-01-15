@@ -28,7 +28,7 @@ Documentation = "https://github.com/lonelyowl13/artist_randomizer/wiki"
 "Bug Tracker" = "https://github.com/lonelyowl13/artist_randomizer/issues"
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "lonelyowl13"
 DisplayName = "artist_randomizer"
 Icon = ""
 includes = [] 
