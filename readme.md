@@ -33,6 +33,7 @@ A few parameters are available:
 
 | Name             | Type      | Description                                                                   |
 |------------------|-----------|-------------------------------------------------------------------------------|
+| `artist_list`    | `ARTIST_LIST` | An optional parameter, output of Load Artists node |
 | `prompt`         | `STRING`  | Your base prompt text to add generated artist tags                            |
 | `num_artists`    | `INT`     | Number of artists to include in the prompt                                    |
 | `min_post_count` | `INT`     | Only include artists with at least this many posts                            |
@@ -51,6 +52,17 @@ I recommend getting a node for text output to see what the result prompt turned 
 
 ---
 
+### 3. **Load Artists**
+
+![Load artists example](images/load_artists.png)
+
+Optionally, load your own artist list. 
+It should be a json file containing a list of entries with username and post count (for example, take a look at artists.json in this repo)
+
+The only parameter is `file path`, a full path to a file. E.g. `C:\Users\YourUsername\Documents\example.json`
+
+---
+
 ## Installation
 
 1. Clone this repository into your ComfyUI/custom_nodes:
@@ -60,3 +72,8 @@ git clone https://github.com/lonelyowl13/artist_randomizer.git
 ```
 
 2. Restart comfy.
+
+3. Or, alternatively, install it from comfy registry:
+```
+comfy node install artist_randomizer
+```
